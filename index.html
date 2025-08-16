@@ -26,28 +26,25 @@
       margin: 40px auto;
       gap: 30px;
     }
-.left-column {
+
+    .left-column {
   flex: 1;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  background: #fffdf7;
+  border: 6px double #90644a;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
   gap: 15px;
-  position: relative;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
 }
 
 .left-column img {
   width: 100%;
   border: 2px solid #b38b59;
-  border-radius: 8px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-  transform: rotate(-2deg);
-  transition: transform 0.3s ease;
+  border-radius: 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
-.left-column img:nth-child(2) { transform: rotate(2deg); }
-.left-column img:hover {
-  transform: scale(1.05) rotate(0deg);
-  z-index: 2;
-}
 
     .right-column {
       flex: 2;
