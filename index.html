@@ -7,224 +7,174 @@
     body {
       margin: 0;
       font-family: 'Georgia', serif;
-      background: url("mughal_background.jpg") repeat;
+      background: url("background-pattern.jpg") repeat; /* Replace with your downloaded image */
       background-size: cover;
       color: #333;
     }
-
     header {
       text-align: center;
-      padding: 40px;
-      background: rgba(230,216,195,0.9);
+      padding: 50px;
       font-size: 3em;
-      font-weight: bold;
       letter-spacing: 3px;
-      border-bottom: 4px solid #b38b59;
       font-family: 'Palatino Linotype', serif;
-      background-image: url("mughal_border.png");
-      background-size: contain;
-      background-repeat: repeat-x;
+      background: rgba(255, 255, 255, 0.8);
+      border-bottom: 6px solid #90644a;
     }
-
     main {
       display: flex;
       max-width: 1200px;
       margin: 40px auto;
       gap: 30px;
     }
-
     .left-column {
       flex: 1;
       display: flex;
       flex-direction: column;
       gap: 20px;
     }
-
     .left-column img {
       width: 100%;
+      border: 3px solid #90644a;
       border-radius: 15px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-      border: 3px solid #b38b59;
     }
-
     .right-column {
       flex: 2;
       display: flex;
       flex-direction: column;
       gap: 25px;
     }
-
-    /* Post box */
-    .post {
-      background-color: rgba(255,245,230,0.95);
-      padding: 20px;
+    .post-form, .post {
+      background: rgba(255,245,230,0.9);
+      border: 3px solid #90644a;
       border-radius: 12px;
+      padding: 20px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      border: 3px solid #b38b59;
     }
-
-    .post h2 {
-      margin-top: 0;
-      font-family: 'Palatino Linotype', serif;
-      color: #6b2e13;
-    }
-
-    .post .date {
-      font-size: 0.8em;
-      color: #666;
-      margin-bottom: 10px;
-    }
-
     .toolbar {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
+      display: flex; flex-wrap: wrap; gap: 8px;
       margin-bottom: 10px;
     }
-
     .toolbar button, .toolbar select {
       padding: 6px 10px;
-      border-radius: 6px;
-      border: 1px solid #b38b59;
       background: #e6d8c3;
+      border: 1px solid #90644a;
+      border-radius: 6px;
       cursor: pointer;
       font-weight: bold;
     }
-
-    .toolbar button:hover {
-      background: #cfa17f;
-      color: white;
+    .toolbar button:hover, .toolbar select:hover {
+      background: #cfa17f; color: white;
     }
-
     #editor {
-      border: 1px solid #b38b59;
+      border: 1px solid #90644a;
       border-radius: 8px;
-      min-height: 100px;
+      min-height: 120px;
       padding: 10px;
       background: white;
+      overflow: auto;
     }
-
-    .post-form {
-      background-color: rgba(255,245,230,0.95);
-      padding: 15px;
-      border-radius: 12px;
-      border: 3px solid #6b2e13;
+    .post h2 { font-family: 'Palatino Linotype', serif; color: #6b2e13; }
+    .post .date { font-size: 0.8em; color: #666; margin-bottom: 10px; }
+    .comments {
+      margin-top: 15px;
+      padding-left: 15px;
+      border-left: 3px solid #d0bfa6;
     }
-
-    .post-form input,
-    .post-form button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 10px;
-      font-family: inherit;
-      border: 1px solid #d0bfa6;
-      border-radius: 8px;
+    .comment { margin-top: 10px; padding: 8px; background: #fff; border-radius: 8px; font-size: 0.9em; }
+    .comment-form textarea, .comment-form button {
+      width: 100%; margin-top: 8px; padding: 8px;
+      font-family: inherit; border: 1px solid #d0bfa6; border-radius: 6px;
     }
-
-    .post-form button {
-      background-color: #cfa17f;
-      color: white;
-      font-weight: bold;
-      cursor: pointer;
-      border: none;
+    .comment-form button {
+      background: #cfa17f; color: white; font-weight: bold; border: none;
     }
-
-    .post-form button:hover {
-      background-color: #8b4d2e;
-    }
+    .comment-form button:hover { background: #8b4d2e; }
   </style>
 </head>
 <body>
   <header>Wandering Mind</header>
   <main>
     <div class="left-column">
-      <img src="mughal_carpet.jpg" alt="Mughal Carpet">
-      <img src="jewelry_pattern.jpg" alt="Jewelry Motif">
-      <img src="mughal_flower.jpg" alt="Mughal Floral Motif">
+      <img src="floral-paisley.jpg" alt="Mughal Floral Pattern">
+      <img src="tile-motif.jpg" alt="Mughal Tile Pattern">
+      <img src="mughal-arch.jpg" alt="Mughal Arch Motif">
     </div>
-
     <div class="right-column">
       <div class="post-form">
         <h3>Add a New Post</h3>
         <input type="text" id="title" placeholder="Post Title">
-
         <div class="toolbar">
-          <button type="button" onclick="format('bold')"><b>B</b></button>
-          <button type="button" onclick="format('italic')"><i>I</i></button>
-          <button type="button" onclick="format('underline')"><u>U</u></button>
-          <select onchange="format('fontName', this.value)">
+          <button onclick="exec('bold')"><b>B</b></button>
+          <button onclick="exec('italic')"><i>I</i></button>
+          <button onclick="exec('underline')"><u>U</u></button>
+          <select onchange="exec('fontName', this.value)">
             <option value="Georgia">Georgia</option>
             <option value="Palatino Linotype">Palatino</option>
             <option value="Times New Roman">Times</option>
             <option value="Courier New">Courier</option>
           </select>
-          <select onchange="format('fontSize', this.value)">
+          <select onchange="exec('fontSize', this.value)">
             <option value="3">Normal</option>
             <option value="4">Large</option>
             <option value="5">X-Large</option>
             <option value="6">Huge</option>
           </select>
         </div>
-
         <div id="editor" contenteditable="true"></div>
-
         <button onclick="addPost()">Add Post</button>
       </div>
-
       <div id="posts"></div>
     </div>
   </main>
-
   <script>
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
-
     function displayPosts() {
-      const postsContainer = document.getElementById("posts");
-      postsContainer.innerHTML = "";
-      posts.forEach((post, index) => {
-        const postDiv = document.createElement("div");
-        postDiv.classList.add("post");
-        postDiv.innerHTML = `
+      const container = document.getElementById("posts");
+      container.innerHTML = "";
+      posts.forEach((post, idx) => {
+        const p = document.createElement("div");
+        p.classList.add("post");
+        p.innerHTML = `
           <h2>${post.title}</h2>
           <div class="date">${post.date}</div>
           <div>${post.content}</div>
-          <button onclick="deletePost(${index})">Delete</button>
-        `;
-        postsContainer.appendChild(postDiv);
+          <button onclick="deletePost(${idx})">Delete</button>
+          <div class="comments">
+            <h4>Comments</h4>
+            ${(post.comments||[]).map(c => `<div class="comment">${c}</div>`).join('')}
+            <div class="comment-form">
+              <textarea id="cm-${idx}" rows="2" placeholder="Write a comment..."></textarea>
+              <button onclick="addComment(${idx})">Add Comment</button>
+            </div>
+          </div>`;
+        container.appendChild(p);
       });
     }
-
     function addPost() {
       const title = document.getElementById("title").value.trim();
       const content = document.getElementById("editor").innerHTML.trim();
-      if (title && content) {
-        const newPost = { title, content, date: new Date().toLocaleString() };
-        posts.unshift(newPost);
-        localStorage.setItem("posts", JSON.stringify(posts));
-        displayPosts();
-        document.getElementById("title").value = "";
-        document.getElementById("editor").innerHTML = "";
-      } else {
-        alert("Please enter both a title and content!");
-      }
+      if (!title || !content) return alert("Enter title & content!");
+      posts.unshift({ title, content, date: new Date().toLocaleString(), comments: [] });
+      localStorage.setItem("posts", JSON.stringify(posts));
+      document.getElementById("title").value = "";
+      document.getElementById("editor").innerHTML = "";
+      displayPosts();
     }
-
-    function deletePost(index) {
-      if (confirm("Delete this post?")) {
-        posts.splice(index, 1);
-        localStorage.setItem("posts", JSON.stringify(posts));
-        displayPosts();
-      }
+    function deletePost(i) { if (confirm("Delete?")) { posts.splice(i,1); localStorage.setItem("posts", JSON.stringify(posts)); displayPosts(); }}
+    function addComment(i) {
+      const txt = document.getElementById(`cm-${i}`).value.trim();
+      if (!txt) return;
+      posts[i].comments.push(txt);
+      localStorage.setItem("posts", JSON.stringify(posts));
+      displayPosts();
     }
-
-    function format(command, value = null) {
-      document.execCommand(command, false, value);
-    }
-
+    function exec(cmd, val = null) { document.execCommand(cmd, false, val); }
     displayPosts();
   </script>
 </body>
 </html>
+
 
 
 
