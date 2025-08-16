@@ -1,43 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Wandering Mind</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Georgia', serif;
-      background: url("background-pattern.jpg") repeat; /* Replace with your downloaded image */
-      background-size: cover;
-      color: #333;
-    }
-    header {
-      text-align: center;
-      padding: 50px;
-      font-size: 3em;
-      letter-spacing: 3px;
-      font-family: 'Palatino Linotype', serif;
-      background: rgba(255, 255, 255, 0.8);
-      border-bottom: 6px solid #90644a;
-    }
-    main {
-      display: flex;
-      max-width: 1200px;
-      margin: 40px auto;
-      gap: 30px;
-    }
-    .left-column {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-    .left-column img {
-      width: 100%;
-      border: 3px solid #90644a;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+  background: url("images/mughal-subtle-bg.png") repeat;
+  background-size: 200px;
+  color: #333;
+}
+
+header {
+  text-align: center;
+  padding: 40px;
+  font-size: 3em;
+  font-family: 'Palatino Linotype', serif;
+  color: #5c2c0d;
+  background: #fdfaf5 url("images/mughal-border-top.png") repeat-x;
+  border-bottom: 4px solid #90644a;
+}
+
+.post-form, .post {
+  background: #fffdf7;
+  border: 2px solid #b38b59;
+  border-radius: 0;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  background-image: url("images/mughal-frame.png");
+  background-size: cover;
+}
+
+.left-column img {
+  width: 100%;
+  border: 2px solid #b38b59;
+  border-radius: 0;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
     .right-column {
       flex: 2;
       display: flex;
