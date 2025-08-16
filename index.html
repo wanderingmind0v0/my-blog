@@ -8,20 +8,18 @@
     body {
       margin: 0;
       font-family: 'Georgia', serif;
-      background: #f9f5ef url('carpet-pattern.jpg') repeat; /* use a Persian pattern image */
-      color: #2c1b0c;
+      background-color: #f5f0e6; /* pale beige */
+      color: #333;
     }
 
     header {
       text-align: center;
-      padding: 40px;
-      background: linear-gradient(to right, #6b2d1f, #a0522d);
-      color: #fceec7;
-      font-size: 3em;
-      font-family: 'Cinzel Decorative', serif;
-      letter-spacing: 3px;
-      border-bottom: 6px double #cfa17f;
-      text-shadow: 2px 2px #3d1f14;
+      padding: 30px;
+      background-color: #e6d8c3;
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      border-bottom: 2px solid #d0bfa6;
     }
 
     main {
@@ -41,9 +39,9 @@
 
     .left-column img {
       width: 100%;
-      border-radius: 10px;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.4);
-      border: 5px solid #7a3e2e;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      border: 2px solid #d0bfa6;
     }
 
     /* Right Column */
@@ -55,50 +53,38 @@
     }
 
     .post {
-      background-color: rgba(252, 238, 199, 0.9); /* parchment effect */
+      background-color: #fff5e6;
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 6px 10px rgba(0,0,0,0.25);
-      border: 4px double #7a3e2e;
-      font-family: 'Palatino Linotype', serif;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-left: 5px solid #cfa17f;
     }
 
     .post h2 {
       margin-top: 0;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8em;
-      color: #5a1c0c;
-      border-bottom: 2px solid #cfa17f;
-      padding-bottom: 5px;
+      font-family: 'Palatino Linotype', serif;
+      color: #8b4d2e;
     }
 
     .post p {
-      line-height: 1.7;
-      font-size: 1.1em;
+      line-height: 1.6;
     }
 
     .comment {
       margin-top: 15px;
       padding: 10px;
-      background-color: #ede2d0;
-      border-left: 4px solid #a0522d;
+      background-color: #f0e5d8;
+      border-left: 3px solid #cfa17f;
       font-size: 0.9em;
-      font-style: italic;
     }
 
     /* Form Styling */
     .post-form {
-      background: rgba(248, 234, 210, 0.95);
+      background-color: #fff5e6;
       padding: 15px;
       border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
-      border: 4px groove #a0522d;
-    }
-
-    .post-form h3 {
-      font-family: 'Cormorant Garamond', serif;
-      margin-top: 0;
-      color: #5a1c0c;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-left: 5px solid #8b4d2e;
     }
 
     .post-form input, 
@@ -108,57 +94,54 @@
       margin-top: 10px;
       padding: 10px;
       font-family: inherit;
-      border: 1px solid #7a3e2e;
-      border-radius: 6px;
-      background: #fdfaf4;
+      border: 1px solid #d0bfa6;
+      border-radius: 8px;
     }
 
     .post-form button {
-      background-color: #7a3e2e;
-      color: #fceec7;
+      background-color: #cfa17f;
+      color: white;
       font-weight: bold;
       cursor: pointer;
       border: none;
-      transition: 0.3s;
     }
 
     .post-form button:hover {
-      background-color: #5a1c0c;
+      background-color: #a86c48;
     }
   </style>
-  <!-- Optional fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>Wandering Mind</header>
   <main>
     <div class="left-column">
-      <img src="carpet1.jpg" alt="Carpet 1">
-      <img src="carpet2.jpg" alt="Carpet 2">
+      <img src="collage1.jpg" alt="Collage 1">
+      <img src="collage2.jpg" alt="Collage 2">
     </div>
 
     <div class="right-column">
-      <!-- Form -->
+      <!-- Form to add new posts -->
       <div class="post-form">
-        <h3>Write a New Post</h3>
+        <h3>Add a New Post</h3>
         <input type="text" id="title" placeholder="Post Title">
         <textarea id="content" rows="4" placeholder="Write your post..."></textarea>
         <button onclick="addPost()">Add Post</button>
       </div>
 
-      <!-- Posts -->
+      <!-- Container for posts -->
       <div id="posts"></div>
     </div>
   </main>
 
   <script>
+    // Load posts from localStorage
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
     function displayPosts() {
       const postsContainer = document.getElementById("posts");
       postsContainer.innerHTML = "";
 
-      posts.forEach((post) => {
+      posts.forEach((post, index) => {
         const postDiv = document.createElement("div");
         postDiv.classList.add("post");
         postDiv.innerHTML = `
@@ -175,7 +158,7 @@
 
       if (title && content) {
         const newPost = { title, content };
-        posts.unshift(newPost);
+        posts.unshift(newPost); // add to top
         localStorage.setItem("posts", JSON.stringify(posts));
         displayPosts();
         document.getElementById("title").value = "";
@@ -185,8 +168,10 @@
       }
     }
 
+    // Show posts on page load
     displayPosts();
   </script>
 </body>
 </html>
+
 
