@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wandering Mind</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background-color: #f5f0e6; /* pale beige */
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 30px;
+      background-color: #e6d8c3; /* slightly darker beige */
+      font-size: 2.5em;
+      font-weight: bold;
+      letter-spacing: 2px;
+      border-bottom: 2px solid #d0bfa6;
+    }
+
+    main {
+      display: flex;
+      max-width: 1200px;
+      margin: 40px auto;
+      gap: 30px;
+    }
+
+    /* Left Column (Visuals & Collages) */
+    .left-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .left-column img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      border: 2px solid #d0bfa6;
+    }
+
+    /* Right Column (Posts & Comments) */
+    .right-column {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .post {
+      background-color: #fff5e6;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      border-left: 5px solid #cfa17f; /* subtle Persian carpet vibe */
+    }
+
+    .post h2 {
+      margin-top: 0;
+      font-family: 'Palatino Linotype', serif;
+      color: #8b4d2e;
+    }
+
+    .post p {
+      line-height: 1.6;
+    }
+
+    /* Comments inside posts */
+    .comment {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #f0e5d8;
+      border-left: 3px solid #cfa17f;
+      font-size: 0.9em;
+    }
+  </style>
+</head>
+<body>
+  <header>Wandering Mind</header>
+  <main>
+    <div class="left-column">
+      <img src="collage1.jpg" alt="Collage 1">
+      <img src="collage2.jpg" alt="Collage 2">
+      <!-- Add more collages/aesthetic visuals -->
+    </div>
+    <div class="right-column">
+      <div class="post">
+        <h2>First Post</h2>
+        <p>This is my first post, exploring thoughts, memories, and the aesthetic of old-world Persian vibes.</p>
+        <div class="comment">Comment: Love this aesthetic!</div>
+      </div>
+
+      <div class="post">
+        <h2>Second Post</h2>
+        <p>Another post reflecting on culture, art, and old stories.</p>
+        <div class="comment">Comment: This is so cozy!</div>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
