@@ -28,7 +28,6 @@
       gap: 30px;
     }
 
-    /* Left Column */
     .left-column {
       flex: 1;
       display: flex;
@@ -43,7 +42,6 @@
       border: 2px solid #d0bfa6;
     }
 
-    /* Right Column */
     .right-column {
       flex: 2;
       display: flex;
@@ -57,7 +55,6 @@
       border-radius: 12px;
       box-shadow: 0 4px 6px rgba(0,0,0,0.1);
       border-left: 5px solid #cfa17f;
-      position: relative;
     }
 
     .post h2 {
@@ -86,7 +83,42 @@
       text-decoration: underline;
     }
 
-    /* Form Styling */
+    .comments {
+      margin-top: 15px;
+      padding-left: 15px;
+      border-left: 3px solid #d0bfa6;
+    }
+
+    .comment {
+      margin-top: 8px;
+      padding: 8px;
+      background: #fff;
+      border-radius: 8px;
+      font-size: 0.9em;
+    }
+
+    .comment-form textarea,
+    .comment-form button {
+      width: 100%;
+      margin-top: 8px;
+      padding: 8px;
+      font-family: inherit;
+      border: 1px solid #d0bfa6;
+      border-radius: 6px;
+    }
+
+    .comment-form button {
+      background-color: #cfa17f;
+      color: white;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+    }
+
+    .comment-form button:hover {
+      background-color: #a86c48;
+    }
+
     .post-form {
       background-color: #fff5e6;
       padding: 15px;
@@ -129,13 +161,10 @@
     </div>
 
     <div class="right-column">
-      <!-- Form to add new posts -->
       <div class="post-form">
         <h3>Add a New Post</h3>
         <input type="text" id="title" placeholder="Post Title">
         <textarea id="content" rows="4" placeholder="Write your post..."></textarea>
-
-        <!-- Formatting controls -->
         <select id="fontSize">
           <option value="16px">Normal</option>
           <option value="20px">Large</option>
@@ -143,17 +172,21 @@
         </select>
         <button type="button" onclick="formatText('bold')">Bold</button>
         <button type="button" onclick="formatText('italic')">Italic</button>
-
         <button onclick="addPost()">Add Post</button>
       </div>
 
-      <!-- Container for posts -->
       <div id="posts"></div>
     </div>
   </main>
 
   <script>
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
+
+    function renderContent(text) {
+      return text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>');
+    }
 
     function displayPosts() {
       const postsContainer = document.getElementById("posts");
@@ -165,9 +198,18 @@
         postDiv.innerHTML = `
           <h2>${post.title}</h2>
           <div class="date">${post.date}</div>
-          <p style="font-size:${post.fontSize};">${post.content}</p>
+          <p style="font-size:${post.fontSize};">${renderContent(post.content)}</p>
           <button onclick="editPost(${index})">Edit</button>
           <button onclick="deletePost(${index})">Delete</button>
+
+          <div class="comments">
+            <h4>Comments</h4>
+            ${(post.comments || []).map(c => `<div class='comment'>${c}</div>`).join('')}
+            <div class="comment-form">
+              <textarea id="comment-${index}" rows="2" placeholder="Write a comment..."></textarea>
+              <button onclick="addComment(${index})">Add Comment</button>
+            </div>
+          </div>
         `;
         postsContainer.appendChild(postDiv);
       });
@@ -179,12 +221,7 @@
       const fontSize = document.getElementById("fontSize").value;
 
       if (title && content) {
-        const newPost = { 
-          title, 
-          content, 
-          fontSize, 
-          date: new Date().toLocaleString() 
-        };
+        const newPost = { title, content, fontSize, date: new Date().toLocaleString(), comments: [] };
         posts.unshift(newPost);
         localStorage.setItem("posts", JSON.stringify(posts));
         displayPosts();
@@ -208,9 +245,19 @@
       document.getElementById("title").value = post.title;
       document.getElementById("content").value = post.content;
       document.getElementById("fontSize").value = post.fontSize;
-      posts.splice(index, 1); // remove old version
+      posts.splice(index, 1);
       localStorage.setItem("posts", JSON.stringify(posts));
       displayPosts();
+    }
+
+    function addComment(index) {
+      const textarea = document.getElementById(`comment-${index}`);
+      const comment = textarea.value.trim();
+      if (comment) {
+        posts[index].comments.push(comment);
+        localStorage.setItem("posts", JSON.stringify(posts));
+        displayPosts();
+      }
     }
 
     function formatText(command) {
@@ -220,14 +267,9 @@
       let selected = textarea.value.substring(start, end);
 
       if (command === "bold") {
-        textarea.value = textarea.value.substring(0, start) + 
-          "**" + selected + "**" + 
-          textarea.value.substring(end);
-      }
-      if (command === "italic") {
-        textarea.value = textarea.value.substring(0, start) + 
-          "*" + selected + "*" + 
-          textarea.value.substring(end);
+        textarea.value = textarea.value.substring(0, start) + "**" + selected + "**" + textarea.value.substring(end);
+      } else if (command === "italic") {
+        textarea.value = textarea.value.substring(0, start) + "*" + selected + "*" + textarea.value.substring(end);
       }
     }
 
