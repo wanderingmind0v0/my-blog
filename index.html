@@ -4,22 +4,24 @@
   <meta charset="UTF-8">
   <title>Wandering Mind</title>
   <style>
-    /* General Styles */
     body {
       margin: 0;
       font-family: 'Georgia', serif;
-      background-color: #f5f0e6; /* pale beige */
-      color: #333;
+      background: #f9f5ef url('mughal-carpet.jpg') repeat; /* add a carpet bg */
+      background-size: cover;
+      color: #2c1b0c;
     }
 
     header {
       text-align: center;
-      padding: 30px;
-      background-color: #e6d8c3;
-      font-size: 2.5em;
-      font-weight: bold;
-      letter-spacing: 2px;
-      border-bottom: 2px solid #d0bfa6;
+      padding: 40px;
+      background: linear-gradient(to right, #7a1f1f, #155c3b, #1c3d7a);
+      color: #fceec7;
+      font-size: 3em;
+      font-family: 'Cinzel Decorative', serif;
+      letter-spacing: 3px;
+      border-bottom: 8px double #d4af37;
+      text-shadow: 2px 2px #000;
     }
 
     main {
@@ -29,7 +31,7 @@
       gap: 30px;
     }
 
-    /* Left Column */
+    /* Left Column - images */
     .left-column {
       flex: 1;
       display: flex;
@@ -39,9 +41,9 @@
 
     .left-column img {
       width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      border: 2px solid #d0bfa6;
+      border-radius: 12px;
+      border: 6px solid #d4af37;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.4);
     }
 
     /* Right Column */
@@ -53,38 +55,52 @@
     }
 
     .post {
-      background-color: #fff5e6;
+      background: rgba(252, 248, 232, 0.95) url('parchment-texture.jpg');
       padding: 20px;
       border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-left: 5px solid #cfa17f;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+      border: 6px solid #7a1f1f;
+      outline: 3px solid #d4af37; /* gold outline */
+      font-family: 'Palatino Linotype', serif;
     }
 
     .post h2 {
       margin-top: 0;
-      font-family: 'Palatino Linotype', serif;
-      color: #8b4d2e;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8em;
+      color: #7a1f1f;
+      border-bottom: 2px solid #d4af37;
+      padding-bottom: 5px;
     }
 
     .post p {
-      line-height: 1.6;
+      line-height: 1.7;
+      font-size: 1.1em;
     }
 
+    /* Comments */
     .comment {
       margin-top: 15px;
       padding: 10px;
-      background-color: #f0e5d8;
-      border-left: 3px solid #cfa17f;
+      background-color: rgba(215, 195, 165, 0.9);
+      border-left: 5px solid #155c3b;
       font-size: 0.9em;
+      font-style: italic;
     }
 
-    /* Form Styling */
+    /* Post Form */
     .post-form {
-      background-color: #fff5e6;
+      background: rgba(250, 240, 210, 0.95);
       padding: 15px;
       border-radius: 12px;
-      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-      border-left: 5px solid #8b4d2e;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      border: 4px groove #d4af37;
+    }
+
+    .post-form h3 {
+      font-family: 'Cormorant Garamond', serif;
+      margin-top: 0;
+      color: #7a1f1f;
     }
 
     .post-form input, 
@@ -94,54 +110,57 @@
       margin-top: 10px;
       padding: 10px;
       font-family: inherit;
-      border: 1px solid #d0bfa6;
-      border-radius: 8px;
+      border: 1px solid #7a3e2e;
+      border-radius: 6px;
+      background: #fdfaf4;
     }
 
     .post-form button {
-      background-color: #cfa17f;
-      color: white;
+      background: linear-gradient(to right, #7a1f1f, #155c3b);
+      color: #fceec7;
       font-weight: bold;
       cursor: pointer;
       border: none;
+      transition: 0.3s;
     }
 
     .post-form button:hover {
-      background-color: #a86c48;
+      background: linear-gradient(to right, #d4af37, #7a1f1f);
+      color: #2c1b0c;
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cormorant+Garamond:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>Wandering Mind</header>
   <main>
     <div class="left-column">
-      <img src="collage1.jpg" alt="Collage 1">
-      <img src="collage2.jpg" alt="Collage 2">
+      <img src="mughal-art1.jpg" alt="Mughal Art 1">
+      <img src="mughal-art2.jpg" alt="Mughal Art 2">
     </div>
 
     <div class="right-column">
-      <!-- Form to add new posts -->
+      <!-- Form -->
       <div class="post-form">
-        <h3>Add a New Post</h3>
+        <h3>Write a New Post</h3>
         <input type="text" id="title" placeholder="Post Title">
         <textarea id="content" rows="4" placeholder="Write your post..."></textarea>
         <button onclick="addPost()">Add Post</button>
       </div>
 
-      <!-- Container for posts -->
+      <!-- Posts -->
       <div id="posts"></div>
     </div>
   </main>
 
   <script>
-    // Load posts from localStorage
     let posts = JSON.parse(localStorage.getItem("posts")) || [];
 
     function displayPosts() {
       const postsContainer = document.getElementById("posts");
       postsContainer.innerHTML = "";
 
-      posts.forEach((post, index) => {
+      posts.forEach((post) => {
         const postDiv = document.createElement("div");
         postDiv.classList.add("post");
         postDiv.innerHTML = `
@@ -158,7 +177,7 @@
 
       if (title && content) {
         const newPost = { title, content };
-        posts.unshift(newPost); // add to top
+        posts.unshift(newPost);
         localStorage.setItem("posts", JSON.stringify(posts));
         displayPosts();
         document.getElementById("title").value = "";
@@ -168,10 +187,10 @@
       }
     }
 
-    // Show posts on page load
     displayPosts();
   </script>
 </body>
 </html>
+
 
 
