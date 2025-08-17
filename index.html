@@ -123,15 +123,6 @@
       background: #cfa17f; color: white; font-weight: bold; border: none;
     }
     .comment-form button:hover { background: #8b4d2e; }
-
-    /* Urdu styling */
-    .urdu {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      font-size: 1.2em;
-      direction: rtl;
-      text-align: right;
-      color: #2b1a0f;
-    }
   </style>
 </head>
 <body>
@@ -147,11 +138,6 @@
       <div class="post-form">
         <h3>Add a New Post</h3>
         <input type="text" id="title" placeholder="Post Title">
-        <select id="category">
-          <option value="general">General</option>
-          <option value="shayari">Shayari</option>
-          <option value="newspaper">Urdu Newspaper</option>
-        </select>
         <div class="toolbar">
           <button onclick="exec('bold')"><b>B</b></button>
           <button onclick="exec('italic')"><i>I</i></button>
@@ -186,12 +172,10 @@
         const p = document.createElement("div");
         p.classList.add("post");
 
-        let contentClass = post.category === "shayari" || post.category === "newspaper" ? "urdu" : "content";
-
         p.innerHTML = `
           <h2>${post.title}</h2>
-          <div class="date">${post.date} — <i>${post.category}</i></div>
-          <div class="${contentClass}">${post.content}</div>
+          <div class="date">${post.date}</div>
+          <div class="content">${post.content}</div>
           <div class="buttons">
             <button onclick="editPost(${idx})">Edit</button>
             <button onclick="deletePost(${idx})">Delete</button>
@@ -211,9 +195,8 @@
     function addPost() {
       const title = document.getElementById("title").value.trim();
       const content = document.getElementById("editor").innerHTML.trim();
-      const category = document.getElementById("category").value;
       if (!title || !content) return alert("Enter title & content!");
-      posts.unshift({ title, content, category, date: new Date().toLocaleString(), comments: [] });
+      posts.unshift({ title, content, date: new Date().toLocaleString(), comments: [] });
       localStorage.setItem("posts", JSON.stringify(posts));
       document.getElementById("title").value = "";
       document.getElementById("editor").innerHTML = "";
@@ -255,6 +238,7 @@
   </script>
 </body>
 </html>
+
 
 
 
