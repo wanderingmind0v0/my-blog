@@ -20,8 +20,9 @@ header {
   border: 10px solid #6b2e13;
   border-left: none;
   border-right: none;
-  background: #fffaf2; /* soft background behind */
+  background: #fffaf2;
   position: relative;
+  overflow: hidden; /* ensures no text spills outside */
 }
 
 .header-wrapper {
@@ -37,14 +38,15 @@ header {
 
 .header-text {
   position: absolute;
-  top: 40%; /* adjust to move text deeper/shallower into the arch */
+  top: 50%; /* place titles mid-arch */
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   color: #6b2e13;
-  text-shadow: 1px 1px 3px rgba(255,255,240,0.9); /* improves readability */
-  width: 100%;
-  padding: 0 20px;
+  text-shadow: 1px 1px 4px rgba(255,255,240,0.95); /* readability */
+  width: 90%;
+  max-width: 800px;
+  padding: 0 15px;
 }
 
 .header-text .urdu {
@@ -69,6 +71,13 @@ header {
   background: linear-gradient(90deg, #b38b59, #e6d8c3);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+/* 📱 Responsive adjustments */
+@media (max-width: 768px) {
+  .header-text .urdu { font-size: 2em; }
+  .header-text .eng { font-size: 2em; letter-spacing: 2px; }
+  .header-text { top: 45%; } /* nudges higher for small screens */
 }
 
 
