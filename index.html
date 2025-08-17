@@ -21,10 +21,7 @@
       padding: 40px 20px;
       background: rgba(255, 255, 240, 0.95);
       border-bottom: 6px solid #6b2e13;
-      background-image: url("blue.webp");
-      background-size: contain;
-      background-position: center bottom;
-      background-repeat: no-repeat;
+      background-image: none; /* removed ugly image */
     }
 
     /* Urdu Nastaliq Title */
@@ -33,14 +30,14 @@
       font-size: 3em;
       font-weight: 500;
       color: #6b2e13;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
     }
 
     /* Divider */
     header .divider {
       width: 220px;
       height: 24px;
-      margin: 0 auto 15px auto;
+      margin: 0 auto 12px auto;
       background: url("ornament-line.png") no-repeat center;
       background-size: contain;
       opacity: 0.85;
@@ -55,7 +52,7 @@
       background: linear-gradient(90deg, #b38b59, #e6d8c3);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
     /* Roman Subtitle */
@@ -82,9 +79,10 @@
 
     .left-column img {
       width: 100%;
-      border: 2px solid #b38b59;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      border: 6px double #90644a;
+      padding: 4px;
+      background: #fffdf7;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
     }
 
     .right-column {
@@ -94,12 +92,14 @@
       gap: 25px;
     }
 
+    /* Keep old ornate post look */
     .post-form, .post {
-      background: #fffdf7;
-      border: 1px solid #d4c2a5;
-      border-radius: 12px;
+      background: rgba(255,245,230,0.95);
+      border: 6px double #90644a;
       padding: 20px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
+      background-image: url("border-pattern.png");
+      background-repeat: repeat-x;
     }
 
     .toolbar {
@@ -108,7 +108,6 @@
       gap: 8px;
       margin-bottom: 10px;
     }
-
     .toolbar button, .toolbar select {
       padding: 6px 10px;
       background: #e6d8c3;
@@ -126,7 +125,6 @@
       padding: 10px;
       background: white;
       overflow: auto;
-      border-radius: 6px;
     }
 
     .post h2 {
@@ -141,59 +139,37 @@
       margin-bottom: 12px;
     }
 
-    .post .content {
-      margin-bottom: 12px;
-    }
+    .post .content { margin-bottom: 12px; }
 
-    .buttons {
-      margin-top: 10px;
-    }
+    /* Keep old button style */
+    .buttons { margin-top: 10px; }
     .buttons button {
       margin-right: 8px;
       padding: 6px 12px;
-      background: #cfa17f; 
-      color: white;
-      border: none;
-      cursor: pointer;
+      background: #cfa17f; color: white;
+      border: none; cursor: pointer;
       font-weight: bold;
     }
-    .buttons button:hover {
-      background: #8b4d2e;
-    }
+    .buttons button:hover { background: #8b4d2e; }
 
     .comments {
       margin-top: 15px;
       padding-left: 15px;
       border-left: 3px solid #d0bfa6;
     }
-
     .comment {
-      margin-top: 10px; 
-      padding: 8px;
-      background: #fff; 
-      border-radius: 8px;
+      margin-top: 10px; padding: 8px;
+      background: #fff; border-radius: 8px;
       font-size: 0.9em;
     }
-
     .comment-form textarea, .comment-form button {
-      width: 100%; 
-      margin-top: 8px; 
-      padding: 8px;
-      font-family: inherit; 
-      border: 1px solid #d0bfa6; 
-      border-radius: 6px;
+      width: 100%; margin-top: 8px; padding: 8px;
+      font-family: inherit; border: 1px solid #d0bfa6; border-radius: 6px;
     }
-
     .comment-form button {
-      background: #cfa17f; 
-      color: white; 
-      font-weight: bold; 
-      border: none;
+      background: #cfa17f; color: white; font-weight: bold; border: none;
     }
-
-    .comment-form button:hover {
-      background: #8b4d2e;
-    }
+    .comment-form button:hover { background: #8b4d2e; }
 
     /* Urdu Shayari Block */
     .shayari {
@@ -204,23 +180,247 @@
       padding: 15px;
       background: #fdf7ef;
       border: 2px dashed #cfa17f;
-      border-radius: 10px;
       color: #4b2e19;
     }
 
-    /* Mobile responsiveness */
+    /* Responsive */
     @media (max-width: 900px) {
-      main {
-        flex-direction: column;
-      }
-      .left-column {
-        flex-direction: row;
-        overflow-x: auto;
-      }
-      .left-column img {
-        width: 200px;
-        flex-shrink: 0;
-      }
+      main { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="urdu">سرگرداں ذہن</div>
+  <div class="roman">Sargardaan Zehin</div>
+  <div class="divider"></div>
+  <div class="eng">WANDERING MIND</div>
+</header>
+
+<main>
+  <div class="left-column">
+    <img src="floral-paisley.jpg" alt="Mughal Floral Pattern">
+    <img src="background-pattern.jpg" alt="Mughal Tile Pattern">
+    <img src="tile-motif.jpg" alt="Mughal Arch Motif">
+  </div>
+
+  <div class="right-column">
+    <div class="post-form">
+      <h3>Add a New Post</h3>
+      <input type="text" id="title" placeholder="Post Title">
+      <div class="toolbar">
+        <button onclick="exec('bold')"><b>B</b></button>
+        <button onclick="exec('italic')"><i>I</i></button>
+        <button onclick="exec('underline')"><u>U</u></button>
+        <select onchange="exec('fontName', this.value)">
+          <option value="Georgia">Georgia</option>
+          <option value="Palatino Linotype">Palatino</option>
+          <option value="Times New Roman">Times</option>
+          <option value="Courier New">Courier</option>
+        </select>
+        <select onchange="exec('fontSize', this.value)">
+          <option value="3">Normal</option>
+          <option value="4">Large</option>
+          <option value="5">X-Large</option>
+          <option value="6">Huge</option>
+        </select>
+      </div>
+      <div id="editor" contenteditable="true"></div>
+      <button onclick="addPost()">Add Post</button>
+    </div>
+    <div id="posts"></div>
+  </div>
+</main>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Wandering Mind</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Georgia', serif;
+      background: url("background.jpeg") repeat;
+      background-size: cover;
+      color: #2b1a0f;
+      line-height: 1.6;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 20px;
+      background: rgba(255, 255, 240, 0.95);
+      border-bottom: 6px solid #6b2e13;
+      background-image: none; /* removed ugly image */
+    }
+
+    /* Urdu Nastaliq Title */
+    header .urdu {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      font-size: 3em;
+      font-weight: 500;
+      color: #6b2e13;
+      margin-bottom: 10px;
+    }
+
+    /* Divider */
+    header .divider {
+      width: 220px;
+      height: 24px;
+      margin: 0 auto 12px auto;
+      background: url("ornament-line.png") no-repeat center;
+      background-size: contain;
+      opacity: 0.85;
+    }
+
+    /* English Title */
+    header .eng {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 3em;
+      font-weight: 700;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, #b38b59, #e6d8c3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 6px;
+    }
+
+    /* Roman Subtitle */
+    header .roman {
+      font-size: 1.1em;
+      font-style: italic;
+      color: #8b4d2e;
+    }
+
+    main {
+      display: flex;
+      max-width: 1200px;
+      margin: 40px auto;
+      gap: 30px;
+      padding: 0 20px;
+    }
+
+    .left-column {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .left-column img {
+      width: 100%;
+      border: 6px double #90644a;
+      padding: 4px;
+      background: #fffdf7;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .right-column {
+      flex: 2;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    /* Keep old ornate post look */
+    .post-form, .post {
+      background: rgba(255,245,230,0.95);
+      border: 6px double #90644a;
+      padding: 20px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
+      background-image: url("border-pattern.png");
+      background-repeat: repeat-x;
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+    .toolbar button, .toolbar select {
+      padding: 6px 10px;
+      background: #e6d8c3;
+      border: 1px solid #90644a;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .toolbar button:hover, .toolbar select:hover {
+      background: #cfa17f; color: white;
+    }
+
+    #editor {
+      border: 1px solid #90644a;
+      min-height: 120px;
+      padding: 10px;
+      background: white;
+      overflow: auto;
+    }
+
+    .post h2 {
+      font-family: 'Palatino Linotype', serif;
+      color: #6b2e13;
+      margin-bottom: 6px;
+    }
+
+    .post .date {
+      font-size: 0.8em;
+      color: #8c7c68;
+      margin-bottom: 12px;
+    }
+
+    .post .content { margin-bottom: 12px; }
+
+    /* Keep old button style */
+    .buttons { margin-top: 10px; }
+    .buttons button {
+      margin-right: 8px;
+      padding: 6px 12px;
+      background: #cfa17f; color: white;
+      border: none; cursor: pointer;
+      font-weight: bold;
+    }
+    .buttons button:hover { background: #8b4d2e; }
+
+    .comments {
+      margin-top: 15px;
+      padding-left: 15px;
+      border-left: 3px solid #d0bfa6;
+    }
+    .comment {
+      margin-top: 10px; padding: 8px;
+      background: #fff; border-radius: 8px;
+      font-size: 0.9em;
+    }
+    .comment-form textarea, .comment-form button {
+      width: 100%; margin-top: 8px; padding: 8px;
+      font-family: inherit; border: 1px solid #d0bfa6; border-radius: 6px;
+    }
+    .comment-form button {
+      background: #cfa17f; color: white; font-weight: bold; border: none;
+    }
+    .comment-form button:hover { background: #8b4d2e; }
+
+    /* Urdu Shayari Block */
+    .shayari {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      font-size: 1.5em;
+      text-align: center;
+      margin: 30px 0;
+      padding: 15px;
+      background: #fdf7ef;
+      border: 2px dashed #cfa17f;
+      color: #4b2e19;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      main { flex-direction: column; }
     }
   </style>
 </head>
@@ -344,6 +544,117 @@
 </script>
 </body>
 </html>
+
+  <script>
+  let currentUser = null;
+
+  // Ask for username when entering the site
+  function loginUser() {
+    currentUser = prompt("Enter your name (this will be shown with your posts):");
+    if (!currentUser) {
+      currentUser = "Guest";
+    }
+    document.getElementById("welcomeUser").innerText = `Welcome, ${currentUser}!`;
+  }
+
+  // Post creation
+  function createPost() {
+    const title = document.getElementById("post-title").value.trim();
+    const content = document.getElementById("post-content").value.trim();
+    if (!title || !content) return alert("Title and content required!");
+
+    const post = document.createElement("div");
+    post.className = "post";
+
+    const author = currentUser;
+
+    post.innerHTML = `
+      <h2>${title}</h2>
+      <p>${content}</p>
+      <p class="date">Posted by <b>${author}</b> on ${new Date().toLocaleString()}</p>
+      <div class="buttons"></div>
+      <div class="comments"></div>
+      <form class="comment-form" onsubmit="addComment(event, this)">
+        <input type="text" placeholder="Write a comment..." required>
+        <button type="submit">Comment</button>
+      </form>
+    `;
+
+    // Add edit/delete buttons only if current user = author
+    if (author === currentUser) {
+      const btns = post.querySelector(".buttons");
+      btns.innerHTML = `
+        <button onclick="editPost(this)">Edit</button>
+        <button onclick="deletePost(this)">Delete</button>
+      `;
+    }
+
+    document.getElementById("posts").prepend(post);
+    document.getElementById("post-title").value = "";
+    document.getElementById("post-content").value = "";
+  }
+
+  // Comment creation
+  function addComment(event, form) {
+    event.preventDefault();
+    const input = form.querySelector("input");
+    const text = input.value.trim();
+    if (!text) return;
+
+    const comment = document.createElement("div");
+    comment.className = "comment";
+    const author = currentUser;
+
+    comment.innerHTML = `
+      <p>${text}</p>
+      <p class="date">Comment by <b>${author}</b> on ${new Date().toLocaleString()}</p>
+      <div class="comment-buttons"></div>
+    `;
+
+    // Add edit/delete buttons only if current user = author
+    if (author === currentUser) {
+      const btns = comment.querySelector(".comment-buttons");
+      btns.innerHTML = `
+        <button onclick="editComment(this)">Edit</button>
+        <button onclick="deleteComment(this)">Delete</button>
+      `;
+    }
+
+    form.parentNode.querySelector(".comments").appendChild(comment);
+    input.value = "";
+  }
+
+  function editPost(btn) {
+    const post = btn.closest(".post");
+    const title = post.querySelector("h2");
+    const content = post.querySelector("p");
+    const newTitle = prompt("Edit title:", title.innerText);
+    const newContent = prompt("Edit content:", content.innerText);
+    if (newTitle) title.innerText = newTitle;
+    if (newContent) content.innerText = newContent;
+  }
+
+  function deletePost(btn) {
+    btn.closest(".post").remove();
+  }
+
+  function editComment(btn) {
+    const comment = btn.closest(".comment");
+    const text = comment.querySelector("p");
+    const newText = prompt("Edit comment:", text.innerText);
+    if (newText) text.innerText = newText;
+  }
+
+  function deleteComment(btn) {
+    btn.closest(".comment").remove();
+  }
+
+  window.onload = loginUser;
+</script>
+
+</body>
+</html>
+
 
 
 
