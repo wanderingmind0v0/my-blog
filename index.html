@@ -2,353 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Wandering Mind</title>
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
-
   <style>
     body {
       margin: 0;
       font-family: 'Georgia', serif;
-      background: url("background.jpeg") repeat;
-      background-size: cover;
-      color: #2b1a0f;
-      line-height: 1.6;
+      background-color: #f9f7f3;
     }
 
-    header {
-      text-align: center;
-      padding: 40px 20px;
-      background: rgba(255, 255, 240, 0.95);
-      border: 10px solid #6b2e13;  /* Thick maroon border */
-      border-left: none;
-      border-right: none;
+    .header-arch {
+      position: relative;
+      width: 100%;
+      height: 200px;
+      background: #c8a97e;
+      border-bottom-left-radius: 50% 100px;
+      border-bottom-right-radius: 50% 100px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+      font-size: 2.5rem;
+      font-weight: bold;
+      text-transform: uppercase;
     }
 
-    /* Urdu Nastaliq Title */
-    header .urdu {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      font-size: 3em;
-      color: #6b2e13;
-      margin-bottom: 10px;
-      line-height: 1.2;
-    }
-
-    /* Divider */
-    header .divider {
-      width: 220px;
-      height: 24px;
-      margin: 0 auto 12px auto;
-      background: url("ornament-line.png") no-repeat center;
-      background-size: contain;
-      opacity: 0.85;
-    }
-
-    /* English Title */
-    header .eng {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 3em;
-      font-weight: 700;
-      letter-spacing: 3px;
-      background: linear-gradient(90deg, #b38b59, #e6d8c3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
-    }
-
-    /* Roman Subtitle */
-    header .roman {
-      font-size: 1.1em;
-      font-style: italic;
-      color: #8b4d2e;
+    .header-arch h1 {
+      margin: 0;
     }
 
     main {
-      display: flex;
-      max-width: 1200px;
-      margin: 40px auto;
-      gap: 30px;
-      padding: 0 20px;
-    }
-
-    .left-column {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .left-column img {
-      width: 100%;
-      border: 6px double #90644a;
-      padding: 4px;
-      background: #fffdf7;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-    }
-
-    .right-column {
-      flex: 2;
-      display: flex;
-      flex-direction: column;
-      gap: 25px;
-    }
-
-    /* Post and form style */
-    .post-form, .post {
-      background: rgba(255,245,230,0.95);
-      border: 6px double #90644a;
-      padding: 20px;
-      box-shadow: inset 0 0 20px rgba(0,0,0,0.15);
-      background-image: url("border-pattern.png");
-      background-repeat: repeat-x;
-    }
-
-    .toolbar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-bottom: 10px;
-    }
-    .toolbar button, .toolbar select {
-      padding: 6px 10px;
-      background: #e6d8c3;
-      border: 1px solid #90644a;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .toolbar button:hover, .toolbar select:hover {
-      background: #cfa17f; color: white;
-    }
-
-    #editor {
-      border: 1px solid #90644a;
-      min-height: 120px;
-      padding: 10px;
-      background: white;
-      overflow: auto;
-    }
-
-    .post h2 {
-      font-family: 'Palatino Linotype', serif;
-      color: #6b2e13;
-      margin-bottom: 6px;
-    }
-
-    .post .date {
-      font-size: 0.8em;
-      color: #8c7c68;
-      margin-bottom: 12px;
-    }
-
-    .buttons { margin-top: 10px; }
-    .buttons button {
-      margin-right: 8px;
-      padding: 6px 12px;
-      background: #cfa17f; color: white;
-      border: none; cursor: pointer;
-      font-weight: bold;
-    }
-    .buttons button:hover { background: #8b4d2e; }
-
-    .comments {
-      margin-top: 15px;
-      padding-left: 15px;
-      border-left: 3px solid #d0bfa6;
-    }
-    .comment {
-      margin-top: 10px; padding: 8px;
-      background: #fff; border-radius: 8px;
-      font-size: 0.9em;
-    }
-    .comment-form textarea, .comment-form button {
-      width: 100%; margin-top: 8px; padding: 8px;
-      font-family: inherit; border: 1px solid #d0bfa6; border-radius: 6px;
-    }
-    .comment-form button {
-      background: #cfa17f; color: white; font-weight: bold; border: none;
-    }
-    .comment-form button:hover { background: #8b4d2e; }
-
-    /* Urdu Shayari Block */
-    .shayari {
-      font-family: 'Noto Nastaliq Urdu', serif;
-      font-size: 1.5em;
+      padding: 2rem;
       text-align: center;
-      margin: 30px 0;
-      padding: 15px;
-      background: #fdf7ef;
-      border: 2px dashed #cfa17f;
-      color: #4b2e19;
-    }
-
-    /* Responsive */
-    @media (max-width: 900px) {
-      main { flex-direction: column; }
+      font-size: 1.2rem;
     }
   </style>
 </head>
 <body>
-
-<header>
-  <div class="urdu">سرگرداں ذہن</div>
-  <div class="roman">Sargardaan Zehin</div>
-  <div class="divider"></div>
-  <div class="eng">WANDERING MIND</div>
-</header>
-
-<div id="welcomeUser" style="margin:10px; font-weight:bold;"></div>
-<button onclick="logoutUser()" style="margin:10px;">Logout</button>
-
-<main>
-  <div class="left-column">
-    <img src="floral-paisley.jpg" alt="Mughal Floral Pattern">
-    <img src="background-pattern.jpg" alt="Mughal Tile Pattern">
-    <img src="tile-motif.jpg" alt="Mughal Arch Motif">
-  </div>
-
-  <div class="right-column">
-    <div class="post-form">
-      <h3>Add a New Post</h3>
-      <input type="text" id="title" placeholder="Post Title">
-      <div class="toolbar">
-        <button onclick="execCmd('bold')"><b>B</b></button>
-        <button onclick="execCmd('italic')"><i>I</i></button>
-        <button onclick="execCmd('underline')"><u>U</u></button>
-        <select onchange="execCmd('fontName', this.value)">
-          <option value="Georgia">Georgia</option>
-          <option value="Palatino Linotype">Palatino</option>
-          <option value="Times New Roman">Times</option>
-          <option value="Courier New">Courier</option>
-        </select>
-        <select onchange="execCmd('fontSize', this.value)">
-          <option value="3">Normal</option>
-          <option value="4">Large</option>
-          <option value="5">X-Large</option>
-          <option value="6">Huge</option>
-        </select>
-      </div>
-      <div id="editor" contenteditable="true"></div>
-      <button onclick="addPost()">Add Post</button>
-    </div>
-    <div id="posts"></div>
-  </div>
-</main>
-
-<script>
-  let posts = JSON.parse(localStorage.getItem("posts")) || [];
-  let currentUser = null;
-
-  function loginUser() {
-    currentUser = localStorage.getItem("blogUser");
-    if (!currentUser) {
-      currentUser = prompt("Enter your name (this will appear with posts):") || "Guest";
-      localStorage.setItem("blogUser", currentUser);
-    }
-    document.getElementById("welcomeUser").innerText = `Welcome, ${currentUser}!`;
-  }
-
-  function logoutUser() {
-    localStorage.removeItem("blogUser");
-    location.reload();
-  }
-
-  function execCmd(cmd, val = null) {
-    document.execCommand(cmd, false, val);
-  }
-
-  function displayPosts() {
-    const container = document.getElementById("posts");
-    container.innerHTML = "";
-    posts.forEach((post, idx) => {
-      const p = document.createElement("div");
-      p.classList.add("post");
-      p.innerHTML = `
-        <h2>${post.title}</h2>
-        <div class="date">Posted by <b>${post.author}</b> on ${post.date}</div>
-        <div class="content">${post.content}</div>
-        <div class="buttons">
-          ${post.author === currentUser ? `
-            <button onclick="editPost(${idx})">Edit</button>
-            <button onclick="deletePost(${idx})">Delete</button>` : ``}
-        </div>
-        <div class="comments">
-          <h4>Comments</h4>
-          ${(post.comments||[]).map((c,i) => `
-            <div class="comment">
-              <p>${c.text}</p>
-              <p class="date">Comment by <b>${c.author}</b> on ${c.date}</p>
-              ${c.author === currentUser ? `
-                <button onclick="editComment(${idx},${i})">Edit</button>
-                <button onclick="deleteComment(${idx},${i})">Delete</button>` : ``}
-            </div>`).join('')}
-          <div class="comment-form">
-            <textarea id="cm-${idx}" rows="2" placeholder="Write a comment..."></textarea>
-            <button onclick="addComment(${idx})">Add Comment</button>
-          </div>
-        </div>`;
-      container.appendChild(p);
-    });
-  }
-
-  function addPost() {
-    const title = document.getElementById("title").value.trim();
-    const content = document.getElementById("editor").innerHTML.trim();
-    if (!title || !content) return alert("Enter title & content!");
-    posts.unshift({ title, content, author: currentUser, date: new Date().toLocaleString(), comments: [] });
-    localStorage.setItem("posts", JSON.stringify(posts));
-    document.getElementById("title").value = "";
-    document.getElementById("editor").innerHTML = "";
-    displayPosts();
-  }
-
-  function deletePost(i) {
-    if (confirm("Delete this post?")) {
-      posts.splice(i,1);
-      localStorage.setItem("posts", JSON.stringify(posts));
-      displayPosts();
-    }
-  }
-
-  function editPost(i) {
-    const newTitle = prompt("Edit Title:", posts[i].title);
-    if (newTitle === null) return;
-    const newContent = prompt("Edit Content:", posts[i].content.replace(/<[^>]+>/g,""));
-    if (newContent === null) return;
-    posts[i].title = newTitle;
-    posts[i].content = newContent;
-    localStorage.setItem("posts", JSON.stringify(posts));
-    displayPosts();
-  }
-
-  function addComment(i) {
-    const txt = document.getElementById(`cm-${i}`).value.trim();
-    if (!txt) return;
-    posts[i].comments.push({ text: txt, author: currentUser, date: new Date().toLocaleString() });
-    localStorage.setItem("posts", JSON.stringify(posts));
-    displayPosts();
-  }
-
-  function editComment(pi, ci) {
-    const newText = prompt("Edit Comment:", posts[pi].comments[ci].text);
-    if (newText) {
-      posts[pi].comments[ci].text = newText;
-      localStorage.setItem("posts", JSON.stringify(posts));
-      displayPosts();
-    }
-  }
-
-  function deleteComment(pi, ci) {
-    posts[pi].comments.splice(ci,1);
-    localStorage.setItem("posts", JSON.stringify(posts));
-    displayPosts();
-  }
-
-  window.onload = function() {
-    loginUser();
-    displayPosts();
-  }
-</script>
-
+  <header class="header-arch">
+    <h1>Wandering Mind</h1>
+  </header>
+  <main>
+    <p>Welcome to the Wandering Mind blog — where curiosity roams free.</p>
+  </main>
 </body>
 </html>
 
