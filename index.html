@@ -545,16 +545,26 @@
 </body>
 </html>
 
-  <script>
+<script>
   let currentUser = null;
 
-  // Ask for username when entering the site
+  // Ask for username or load from localStorage
   function loginUser() {
-    currentUser = prompt("Enter your name (this will be shown with your posts):");
+    currentUser = localStorage.getItem("blogUser");
     if (!currentUser) {
-      currentUser = "Guest";
+      currentUser = prompt("Enter your name (this will be shown with your posts):");
+      if (!currentUser) {
+        currentUser = "Guest";
+      }
+      localStorage.setItem("blogUser", currentUser);
     }
     document.getElementById("welcomeUser").innerText = `Welcome, ${currentUser}!`;
+  }
+
+  // Allow logout (clear localStorage)
+  function logoutUser() {
+    localStorage.removeItem("blogUser");
+    location.reload(); // reload page to ask again
   }
 
   // Post creation
@@ -580,7 +590,7 @@
       </form>
     `;
 
-    // Add edit/delete buttons only if current user = author
+    // Only author gets edit/delete
     if (author === currentUser) {
       const btns = post.querySelector(".buttons");
       btns.innerHTML = `
@@ -611,7 +621,7 @@
       <div class="comment-buttons"></div>
     `;
 
-    // Add edit/delete buttons only if current user = author
+    // Only author gets edit/delete
     if (author === currentUser) {
       const btns = comment.querySelector(".comment-buttons");
       btns.innerHTML = `
@@ -651,6 +661,11 @@
 
   window.onload = loginUser;
 </script>
+
+<!-- Show logged-in user and logout -->
+<div id="welcomeUser" style="margin:10px; font-weight:bold;"></div>
+<button onclick="logoutUser()" style="margin:10px;">Logout</button>
+
 
 </body>
 </html>
