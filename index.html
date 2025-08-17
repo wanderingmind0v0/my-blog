@@ -17,65 +17,60 @@
     }
 
 header {
-  position: relative;
-  text-align: center;
-  padding: 80px 20px;
-  background: url("arch.png") no-repeat center top;
-  background-size: cover;
-  border: 10px solid #6b2e13;  /* Thick maroon border */
+  border: 10px solid #6b2e13;
   border-left: none;
   border-right: none;
-  color: #2b1a0f;
-}
-
-/* translucent overlay for readability */
-header::before {
-  content: "";
-  position: absolute;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(255, 255, 240, 0.75); /* soft ivory overlay */
-  z-index: 0;
-}
-
-/* make sure text sits above overlay */
-header .urdu,
-header .roman,
-header .divider,
-header .eng {
+  background: #fffaf2; /* soft background behind */
   position: relative;
-  z-index: 1;
-  text-shadow: 1px 1px 2px rgba(0,0,0,0.15); /* subtle readability boost */
 }
 
+.header-wrapper {
+  position: relative;
+  text-align: center;
+}
 
-    /* Divider */
-    header .divider {
-      width: 220px;
-      height: 24px;
-      margin: 0 auto 12px auto;
-      background: url("ornament-line.png") no-repeat center;
-      background-size: contain;
-      opacity: 0.85;
-    }
+.header-banner {
+  width: 100%;
+  height: auto;
+  display: block;
+}
 
-    /* English Title */
-    header .eng {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 3em;
-      font-weight: 700;
-      letter-spacing: 3px;
-      background: linear-gradient(90deg, #b38b59, #e6d8c3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
-    }
+.header-text {
+  position: absolute;
+  top: 40%; /* adjust to move text deeper/shallower into the arch */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #6b2e13;
+  text-shadow: 1px 1px 3px rgba(255,255,240,0.9); /* improves readability */
+  width: 100%;
+  padding: 0 20px;
+}
 
-    /* Roman Subtitle */
-    header .roman {
-      font-size: 1.1em;
-      font-style: italic;
-      color: #8b4d2e;
-    }
+.header-text .urdu {
+  font-family: 'Noto Nastaliq Urdu', serif;
+  font-size: 3em;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+
+.header-text .roman {
+  font-size: 1.1em;
+  font-style: italic;
+  color: #8b4d2e;
+  margin-bottom: 6px;
+}
+
+.header-text .eng {
+  font-family: 'Cinzel Decorative', serif;
+  font-size: 3em;
+  font-weight: 700;
+  letter-spacing: 3px;
+  background: linear-gradient(90deg, #b38b59, #e6d8c3);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 
     main {
       display: flex;
@@ -204,11 +199,22 @@ header .eng {
 <body>
 
 <header>
-  <div class="urdu">سرگرداں ذہن</div>
-  <div class="roman">Sargardaan Zehin</div>
-  <div class="divider"></div>
-  <div class="eng">WANDERING MIND</div>
+  <div class="header-wrapper">
+    <img src="c638fe10-6897-44df-acbc-c6c474792723.png" 
+         alt="Header Decoration" 
+         class="header-banner">
+
+    <!-- Titles placed on top of the image -->
+    <div class="header-text">
+      <div class="urdu">سرگرداں ذہن</div>
+      <div class="roman">Sargardaan Zehin</div>
+      <div class="divider"></div>
+      <div class="eng">WANDERING MIND</div>
+    </div>
+  </div>
 </header>
+
+
 
 <div id="welcomeUser" style="margin:10px; font-weight:bold;"></div>
 <button onclick="logoutUser()" style="margin:10px;">Logout</button>
