@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Wandering Mind</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Noto+Nastaliq+Urdu&display=swap" rel="stylesheet">
+
   <style>
     body {
       margin: 0;
@@ -14,17 +17,32 @@
 
     header {
       text-align: center;
-      padding: 40px;
-      font-size: 3em;
-      letter-spacing: 3px;
-      font-family: 'Cinzel Decorative', serif;
-      background: rgba(255, 255, 240, 0.9);
+      padding: 50px 20px;
+      background: rgba(255, 255, 240, 0.95);
       border-bottom: 8px solid #6b2e13;
       box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      background-image: url("arch-motif.png"); /* Optional Mughal arch motif */
+      background-image: url("arch-motif.png");
       background-repeat: no-repeat;
       background-position: center bottom;
       background-size: contain;
+    }
+    header .eng {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 3em;
+      letter-spacing: 3px;
+      color: #4b2e19;
+    }
+    header .urdu {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      font-size: 2em;
+      margin-top: 10px;
+      color: #6b2e13;
+    }
+    header .roman {
+      font-size: 1.1em;
+      font-style: italic;
+      margin-top: 5px;
+      color: #8b4d2e;
     }
 
     main {
@@ -61,10 +79,9 @@
     .post-form, .post {
       background: rgba(255,245,230,0.95);
       border: 3px solid #90644a;
-      border-radius: 0;
       padding: 20px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-      background-image: url("border-pattern.png"); /* Mughal pattern */
+      background-image: url("border-pattern.png");
       background-repeat: repeat-x;
     }
 
@@ -123,10 +140,27 @@
       background: #cfa17f; color: white; font-weight: bold; border: none;
     }
     .comment-form button:hover { background: #8b4d2e; }
+
+    /* Urdu Shayari Block */
+    .shayari {
+      font-family: 'Noto Nastaliq Urdu', serif;
+      font-size: 1.5em;
+      text-align: center;
+      margin: 30px 0;
+      padding: 15px;
+      background: #fdf7ef;
+      border: 2px dashed #cfa17f;
+      color: #4b2e19;
+    }
   </style>
 </head>
 <body>
-  <header>Wandering Mind</header>
+  <header>
+    <div class="eng">Wandering Mind</div>
+    <div class="urdu">سرگرداں ذہن</div>
+    <div class="roman">Sargardaan Zehin</div>
+  </header>
+
   <main>
     <div class="left-column">
       <img src="floral-paisley.jpg" alt="Mughal Floral Pattern">
@@ -238,6 +272,7 @@
   </script>
 </body>
 </html>
+
 
 
 
